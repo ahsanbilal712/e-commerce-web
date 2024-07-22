@@ -73,8 +73,12 @@ const CarouselImg: React.FC = () => {
                 <Slider {...settings}>
                     <div className="relative">
                         <Image src={CarouselImage1} alt="Carousel Image 1" className="rounded-xl w-[800px] h-[350px]" />
-                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <div className="absolute top-1/4 left-20 text-white">
+                            <h1 className="text-2xl font-bold">Sport Edition</h1>
+                            <h1 className="text-2xl font-bold">Red Special Edition</h1>
+
+                            <p className="text-sm mt-4">Wirless connection with your computer, laptop...</p>
+                            <button className="bg-black text-white text-sm px-4 py-2 mt-16 rounded hover:bg-blue-600 ">
                                 Discover Now
                             </button>
                         </div>
@@ -90,13 +94,38 @@ const CarouselImg: React.FC = () => {
                 </Slider>
             </div>
             <div className="flex flex-col px-5 pb-2 justify-between">
-                <Image src={CarouselSide} alt="Carousel Image 2" className="rounded-2xl w-[390px] h-[165px]" />
-                <Image src={CarouselSide} alt="Carousel Image 2" className="rounded-2xl w-[390px] h-[165px]" />
+                <div className="relative w-[260px] h-[165px] overflow-hidden bg-cover bg-no-repeat hover:rounded-xl">
+                    <Image src={CarouselSide} alt="Carousel Image 2" className="rounded-2xl w-full h-full transform transition duration-300 ease-in-out hover:scale-110" />
+                    <div className="absolute inset-0 flex flex-col left-4 w-[110px] justify-center text-white">
+                        <h1 className="text-lg ">Phone Galaxy S20</h1>
+                        <p className="text-xs mt-4">Subheading 1</p>
+                    </div>
+                </div>
+                <div className="relative w-[260px] h-[165px] overflow-hidden bg-cover bg-no-repeat hover:rounded-xl">
+                    <Image src={CarouselSide} alt="Carousel Image 2" className="rounded-2xl w-full h-full transform transition duration-300 ease-in-out hover:scale-110" />
+                    <div className="absolute inset-0 flex flex-col left-4 w-[110px] justify-center text-white">
+                        <h1 className="text-lg ">Phone Galaxy S20</h1>
+                        <p className="text-xs mt-4">Subheading 1</p>
+                    </div>
+                </div>
             </div>
-            <div className="flex flex-col  pb-2 justify-between">
-                <Image src={CarouselSide} alt="Carousel Image 2" className="rounded-2xl w-[390px] h-[165px]" />
-                <Image src={CarouselSide} alt="Carousel Image 2" className="rounded-2xl w-[390px] h-[165px]" />
+            <div className="flex flex-col pb-2 justify-between">
+                <div className="relative w-[260px] h-[165px] overflow-hidden bg-cover bg-no-repeat hover:rounded-xl">
+                    <Image src={CarouselSide} alt="Carousel Image 2" className="rounded-2xl w-full h-full transform transition duration-300 ease-in-out hover:scale-110" />
+                    <div className="absolute inset-0 flex flex-col left-4 w-[110px] justify-center text-white">
+                        <h1 className="text-lg ">Phone Galaxy S20</h1>
+                        <p className="text-xs mt-4">Subheading 1</p>
+                    </div>
+                </div>
+                <div className="relative w-[260px] h-[165px] overflow-hidden bg-cover bg-no-repeat hover:rounded-xl">
+                    <Image src={CarouselSide} alt="Carousel Image 2" className="rounded-2xl w-full h-full transform transition duration-300 ease-in-out hover:scale-110" />
+                    <div className="absolute inset-0 flex flex-col left-4 w-[110px] justify-center text-white">
+                        <h1 className="text-lg ">Phone Galaxy S20</h1>
+                        <p className="text-xs mt-4">Subheading 1</p>
+                    </div>
+                </div>
             </div>
+
         </div>
 
     );

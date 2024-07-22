@@ -3,6 +3,7 @@ import Header from "./homePage/components/Header";
 import Carousel from "./homePage/components/Carousel";
 import TrendingProducts from "./homePage/components/TrendingProducts";
 import PopularCategories from "./homePage/components/PopularCategories";
+import Footer from "./homePage/components/Footer";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <Carousel />
       <TrendingProducts />
       <PopularCategories />
+      <Footer />
     </div>
   );
 }

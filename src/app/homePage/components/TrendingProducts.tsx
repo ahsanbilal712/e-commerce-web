@@ -1,22 +1,55 @@
 "use client";
 
 import React, { useState } from "react";
-import productsImage from "../../../../public/images/home/products/products.webp"
+import productImg from "../../../../public/images/home/products/products.webp";
 
-const TrendingProducts: React.FC = () => {
+const PopularCategories: React.FC = () => {
     const items = [
-        productsImage,
-        productsImage,
-        productsImage,
-        productsImage,
-        productsImage,
-        productsImage,
-        productsImage,
-        productsImage,
-        productsImage,
-        productsImage,
-        productsImage,
-
+        {
+            image: productImg,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg,
+            title: "Apple iPhone 13 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
     ];
 
     const [startIndex, setStartIndex] = useState(0);
@@ -30,15 +63,26 @@ const TrendingProducts: React.FC = () => {
     };
 
     return (
-        <div className="relative px-10 py-10">
-            <div className="carousel flex space-x-5 rounded-box overflow-hidden ">
+        <div className="relative px-10 py-5">
+            <div className="container  mt-10">
+                <h1 className="text-xl ">Hot Trending Products</h1>
+                <hr className="w-[220px] h-[2px]  bg-gray-100 border-0 rounded md:my-2 md:mb-10 dark:bg-[#21b6d3]" />
+            </div>
+            <div className="carousel flex space-x-5 rounded-box overflow-hidden">
                 {items.slice(startIndex, startIndex + 7).map((item, index) => (
-                    <div key={index} className="carousel-item flex-shrink-0 h-[270px] rounded-xl bg-white">
+                    <div key={index} className="carousel-item flex-shrink-0 w-[175px]">
                         <img
-                            src={productsImage.src}
+                            src={item.image.src}
                             alt={`Item ${index}`}
-                            className="w-[177px] h-68 object-cover rounded-lg"
+                            className="w-[210px] h-36 object-cover rounded-xl"
                         />
+                        <div className=" mt-2">
+                            <div className="text-xs text-blue-800 font-bold">{item.title}</div>
+                            <div className="text-xs font-bold">{item.price}</div>
+                            <button className="bg-black text-xs w-full text-white px-4 py-2 rounded-3xl hover:bg-blue-600 mt-2">
+                                Add to Cart
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>
@@ -58,4 +102,4 @@ const TrendingProducts: React.FC = () => {
     );
 };
 
-export default TrendingProducts;
+export default PopularCategories;

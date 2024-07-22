@@ -1,17 +1,40 @@
 "use client";
 
 import React, { useState } from "react";
-import categoryImg from "../../../../public/images/home/categories/categories.jpg"
+import categoryImg from "../../../../public/images/home/categories/categories.jpg";
 
 const PopularCategories: React.FC = () => {
     const items = [
-        categoryImg,
-        categoryImg,
-        categoryImg,
-        categoryImg,
-        categoryImg,
-        categoryImg,
-
+        {
+            image: categoryImg,
+            title: "Camera & Photo",
+            subtitle: "10 products",
+        },
+        {
+            image: categoryImg,
+            title: "Camera & Photo",
+            subtitle: "10 products",
+        },
+        {
+            image: categoryImg,
+            title: "Camera & Photo",
+            subtitle: "10 products",
+        },
+        {
+            image: categoryImg,
+            title: "Camera & Photo",
+            subtitle: "10 products",
+        },
+        {
+            image: categoryImg,
+            title: "Camera & Photo",
+            subtitle: "10 products",
+        },
+        {
+            image: categoryImg,
+            title: "Camera & Photo",
+            subtitle: "10 products",
+        },
     ];
 
     const [startIndex, setStartIndex] = useState(0);
@@ -25,15 +48,23 @@ const PopularCategories: React.FC = () => {
     };
 
     return (
-        <div className="relative px-10 py-10">
-            <div className="carousel flex space-x-5  rounded-box overflow-hidden">
+        <div className="relative px-10 py-5">
+            <div className="container mt-2">
+                <h1 className="text-xl">Popular Categories</h1>
+                <hr className="w-[190px] h-[2px] bg-gray-100 border-0 rounded md:my-2 md:mb-10 dark:bg-[#21b6d3]" />
+            </div>
+            <div className="carousel flex space-x-5 rounded-box overflow-hidden">
                 {items.slice(startIndex, startIndex + 6).map((item, index) => (
-                    <div key={index} className="carousel-item flex-shrink-0">
+                    <div key={index} className="relative max-w-xs overflow-hidden bg-cover bg-no-repeat hover:rounded-xl">
                         <img
-                            src={categoryImg.src}
+                            src={item.image.src}
                             alt={`Item ${index}`}
-                            className="w-[210px] h-28 object-cover rounded-xl"
+                            className="w-[210px] h-28 object-cover rounded-xl transform transition duration-300 ease-in-out hover:scale-110 "
                         />
+                        <div className="absolute bottom-12 left-5 text-white">
+                            <div className="text-sm font-bold">{item.title}</div>
+                            <div className="text-xs ttext-red-400">({item.subtitle})</div>
+                        </div>
                     </div>
                 ))}
             </div>
