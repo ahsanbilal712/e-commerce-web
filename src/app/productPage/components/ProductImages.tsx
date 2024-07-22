@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import ReactImageMagnify from 'react-image-magnify';
 import productImg from "../../../../public/images/home/products/products.webp";
 import productImg2 from "../../../../public/images/home/products/productImg2.webp";
 import productImg3 from "../../../../public/images/home/products/productImg3.webp";
@@ -39,17 +40,30 @@ const ProductImages: React.FC = () => {
             </div>
 
             {/* Expanded image container on the right */}
-            <div className="bg-slate-500">
+            <div className="w-full">
                 {showExpanded && (
-                    <div className="relative h-full">
+                    <div className="relative h-full p-4">
                         {/* Close the image */}
                         <span onClick={closeExpanded} className="absolute top-2 right-2 text-white text-4xl cursor-pointer">&times;</span>
 
-                        {/* Expanded image */}
-                        <img src={expandedImg} alt={imgText} className="w-[400px] h-full object-cover" />
-
-                        {/* Image text */}
-                        <div className="absolute bottom-4 left-4 text-white text-xl">{imgText}</div>
+                        {/* Expanded image with ReactImageMagnify */}
+                        <ReactImageMagnify {...{
+                            smallImage: {
+                                alt: imgText,
+                                isFluidWidth: true,
+                                src: expandedImg,
+                            },
+                            largeImage: {
+                                src: expandedImg,
+                                width: 1200,
+                                height: 1800,
+                            },
+                            enlargedImageContainerDimensions: {
+                                width: '300%',
+                                height: '150%',
+                            },
+                            enlargedImagePosition: 'beside'
+                        }} />
                     </div>
                 )}
             </div>
