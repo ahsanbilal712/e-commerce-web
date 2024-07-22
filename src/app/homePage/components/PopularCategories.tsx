@@ -51,7 +51,7 @@ const PopularCategories: React.FC = () => {
         <div className="relative px-10 py-5">
             <div className="container mt-2">
                 <h1 className="text-xl">Popular Categories</h1>
-                <hr className="w-[190px] h-[2px] bg-gray-100 border-0 rounded md:my-2 md:mb-10 dark:bg-[#21b6d3]" />
+                <hr className="w-[185px] h-[2px]  border-0 rounded md:my-2 md:mb-10 bg-[#21b6d3]" />
             </div>
             <div className="carousel flex space-x-5 rounded-box overflow-hidden">
                 {items.slice(startIndex, startIndex + 6).map((item, index) => (
