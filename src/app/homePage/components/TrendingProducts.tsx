@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import productImg from "../../../../public/images/home/products/products.webp";
+import productImg2 from "../../../../public/images/home/products/productImg2.webp";
+import productImg3 from "../../../../public/images/home/products/productImg3.webp";
 
 const PopularCategories: React.FC = () => {
     const items = [
@@ -11,7 +13,12 @@ const PopularCategories: React.FC = () => {
             price: "$56",
         },
         {
-            image: productImg,
+            image: productImg2,
+            title: "Apple iPhone 12 Pro Max 128GB",
+            price: "$56",
+        },
+        {
+            image: productImg3,
             title: "Apple iPhone 12 Pro Max 128GB",
             price: "$56",
         },
@@ -21,7 +28,7 @@ const PopularCategories: React.FC = () => {
             price: "$56",
         },
         {
-            image: productImg,
+            image: productImg2,
             title: "Apple iPhone 12 Pro Max 128GB",
             price: "$56",
         },
@@ -31,17 +38,12 @@ const PopularCategories: React.FC = () => {
             price: "$56",
         },
         {
-            image: productImg,
-            title: "Apple iPhone 12 Pro Max 128GB",
-            price: "$56",
-        },
-        {
-            image: productImg,
+            image: productImg3,
             title: "Apple iPhone 13 Pro Max 128GB",
             price: "$56",
         },
         {
-            image: productImg,
+            image: productImg2,
             title: "Apple iPhone 12 Pro Max 128GB",
             price: "$56",
         },

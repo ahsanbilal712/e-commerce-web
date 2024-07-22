@@ -56,11 +56,11 @@ const ProductImages: React.FC = () => {
                             largeImage: {
                                 src: expandedImg,
                                 width: 1200,
-                                height: 1800,
+                                height: 1200,
                             },
                             enlargedImageContainerDimensions: {
-                                width: '300%',
-                                height: '150%',
+                                width: '200%',
+                                height: '100%',
                             },
                             enlargedImagePosition: 'beside'
                         }} />
