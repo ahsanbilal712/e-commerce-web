@@ -70,7 +70,7 @@ const PopularCategories: React.FC = () => {
             </div>
             <div className="carousel flex space-x-5 rounded-box overflow-hidden">
                 {items.slice(startIndex, startIndex + 7).map((item, index) => (
-                    <div key={index} className="carousel-item flex-shrink-0 w-[175px]">
+                    <div key={index} className="carousel-item flex-shrink-0 w-[175px] p-3 rounded-xl  bg-white">
                         <img
                             src={item.image.src}
                             alt={`Item ${index}`}
