@@ -1,6 +1,4 @@
 // src/app/cart/components/ProductDescription.tsx
-"use client";
-
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
@@ -11,6 +9,8 @@ import { CiGift } from "react-icons/ci";
 const ProductDescription: React.FC = () => {
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch();
+
+    console.log("Cart items:", cartItems); // Debugging statement
 
     return (
         <div className="max-w-full mx-auto pr-4">
@@ -46,34 +46,32 @@ const ProductDescription: React.FC = () => {
             ))}
             <hr className="mt-4" />
             <div className='flex flex-row justify-between'>
-                <button className="bg-black text-white text-xs px-4 py-2 mt-4 font-bold rounded-sm  hover:bg-blue-600 ">
+                <button className="bg-black text-white text-xs px-4 py-2 mt-4 font-bold rounded-sm hover:bg-blue-600">
                     Continue Shopping
                 </button>
-                {cartItems.map((item, index) => (
-                    <button onClick={() => dispatch(removeItem(index))} className="bg-black text-white text-xs px-9 py-3 mt-4 font-bold rounded-sm hover:bg-blue-600 mr-10 ">
+                {cartItems.length > 0 && (
+                    <button onClick={() => dispatch(removeItem(0))} className="bg-black text-white text-xs px-9 py-3 mt-4 font-bold rounded-sm hover:bg-blue-600 mr-10">
                         Delete All
                     </button>
-                ))}
+                )}
             </div>
             <hr className="mt-4" />
-            <div className='flex flex-col mt-16 '>
+            <div className='flex flex-col mt-16'>
                 <div className='flex flex-row items-center'>
                     <CiGift />
                     <p className='ml-3 text-xs'>Do you want a gift wrap? Only $2.00</p>
                 </div>
             </div>
-            <button className="bg-black text-white text-xs px-7  py-3  mt-4 font-bold rounded-sm hover:bg-blue-600 ">
+            <button className="bg-black text-white text-xs px-7 py-3 mt-4 font-bold rounded-sm hover:bg-blue-600">
                 Add a Gift Wrap
             </button>
-            <div className='flex flex-col mt-16 '>
+            <div className='flex flex-col mt-16'>
                 <div className='flex flex-row items-center'>
-                    <p className=' text-sm font-bold'>Add Order Note</p>
+                    <p className='text-sm font-bold'>Add Order Note</p>
                 </div>
             </div>
 
             <textarea id="message" rows={4} className="block p-2.5 mt-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
-
-
         </div>
     );
 };

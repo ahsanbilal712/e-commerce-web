@@ -1,6 +1,9 @@
 // src/app/cart/store/localStorage.ts
 
-import { RootState } from './store';
+//import { RootState } from './store';
+
+// Define the local storage key
+const localStorageKey = 'cartState';
 
 // Define the structure of the persisted state
 type PersistedState = {
@@ -17,7 +20,7 @@ type PersistedState = {
 // Load state from localStorage
 export const loadState = (): PersistedState | undefined => {
     try {
-        const serializedState = localStorage.getItem('cartState');
+        const serializedState = localStorage.getItem(localStorageKey);
         console.log("Loading state from localStorage:", serializedState); // Log loaded state
         if (serializedState === null) {
             return undefined;
@@ -34,7 +37,7 @@ export const saveState = (state: PersistedState): void => {
     try {
         const serializedState = JSON.stringify(state);
         console.log("Saving state to localStorage:", serializedState); // Log saved state
-        localStorage.setItem('cartState', serializedState);
+        localStorage.setItem(localStorageKey, serializedState);
     } catch (err) {
         console.error("Failed to save state to localStorage:", err);
         // Ignore write errors

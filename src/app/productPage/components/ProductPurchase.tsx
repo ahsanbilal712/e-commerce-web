@@ -1,32 +1,33 @@
+//src/app/productPage/components/ProductPurchase.tsx
 "use client";
 
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../cart/store/cartSlice'; // Import the action
 
-const ProductImages: React.FC = () => {
-    const [imgText, setImgText] = useState<string>("Nature");
-    const [showExpanded, setShowExpanded] = useState<boolean>(true);
+interface ProductProps {
+    image: string;
+    title: string;
+    price: number;
+    specs: string[];
+}
+
+const ProductPurchase: React.FC<ProductProps> = ({ image, title, price, specs }) => {
     const [quantity, setQuantity] = useState<number>(1);
+    const dispatch = useDispatch();
 
+    const incrementQuantity = () => setQuantity(prev => prev + 1);
+    const decrementQuantity = () => quantity > 1 && setQuantity(prev => prev - 1);
 
+    const handleAddToCart = () => {
+        console.log("Dispatching addToCart", { image, title, price, quantity });
 
-    const closeExpanded = () => {
-        setShowExpanded(false);
-    };
-
-    const incrementQuantity = () => {
-        setQuantity((prev) => prev + 1);
-    };
-
-    const decrementQuantity = () => {
-        if (quantity > 1) {
-            setQuantity((prev) => prev - 1);
-        }
+        dispatch(addToCart({ image, title, price, quantity }));
     };
 
     return (
         <div className="flex flex-col w-full p-4">
-            {/* Product Title and Rating */}
-            <h1 className="text-2xl font-bold">Product Name</h1>
+            <h1 className="text-2xl font-bold">{title}</h1>
             <div className="flex items-center my-2">
                 <div className="flex text-yellow-400"> {/* Placeholder for star icons */}
                     ★★★★☆
@@ -35,35 +36,35 @@ const ProductImages: React.FC = () => {
             </div>
             <hr />
 
-            {/* Price and Specs */}
             <div className="my-2">
-                <p className="text-xl font-semibold">$299.99</p>
+                <p className="text-xl font-semibold">${price.toFixed(2)}</p>
                 <ul className="list-disc list-inside">
-                    <li>Spec 1</li>
-                    <li>Spec 2</li>
-                    <li>Spec 3</li>
+                    {specs.map((spec, index) => (
+                        <li key={index}>{spec}</li>
+                    ))}
                 </ul>
             </div>
 
-            {/* Quantity and Add to Cart Button */}
             <div className="flex items-center gap-2 my-2">
                 <button onClick={decrementQuantity} className="bg-gray-300 px-2 py-1">-</button>
                 <span>{quantity}</span>
                 <button onClick={incrementQuantity} className="bg-gray-300 px-2 py-1">+</button>
-                <button className="flex-grow bg-black text-white px-4 text-sm font-bold py-2 rounded-3xl">Add to Cart</button>
+                <button onClick={handleAddToCart} className="flex-grow bg-black text-white px-4 text-sm font-bold py-2 rounded-3xl">
+
+                    Add to Cart
+                </button>
             </div>
 
-            {/* Agreement Checkbox */}
             <div className="flex items-center my-2">
                 <input type="checkbox" id="agree" className="mr-2" />
                 <label htmlFor="agree">I agree to the terms and conditions</label>
             </div>
 
-            {/* Shop Pay Button */}
-            <button className="bg-purple-500 text-white w-full text-sm font-bold py-2 my-2 rounded-3xl">Buy with Shop Pay</button>
+            <button className="bg-purple-500 text-white w-full text-sm font-bold py-2 my-2 rounded-3xl">
+                Buy with Shop Pay
+            </button>
             <hr className="my-5" />
 
-            {/* Additional Information */}
             <div className="text-sm my-2">
                 <p>Shipping and Returns</p>
                 <p>Contact us</p>
@@ -81,4 +82,4 @@ const ProductImages: React.FC = () => {
     );
 };
 
-export default ProductImages;
+export default ProductPurchase;
