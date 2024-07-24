@@ -1,5 +1,6 @@
 // src/app/cart/store/cartSlice.ts
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartItem {
   image: string;
@@ -12,6 +13,7 @@ interface CartState {
   items: CartItem[];
 }
 
+// Define initial state matching CartState
 const initialState: CartState = {
   items: [
     {
@@ -39,9 +41,9 @@ const cartSlice = createSlice({
     removeItem: (state, action: PayloadAction<number>) => {
       state.items.splice(action.payload, 1);
     },
+    resetState: () => initialState,
   },
 });
 
-export const { incrementQuantity, decrementQuantity, removeItem } =
-  cartSlice.actions;
+export const { incrementQuantity, decrementQuantity, removeItem, resetState } = cartSlice.actions;
 export default cartSlice.reducer;

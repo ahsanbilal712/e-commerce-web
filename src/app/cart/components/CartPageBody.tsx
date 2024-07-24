@@ -4,7 +4,7 @@
 import React from "react";
 import { AiOutlineStop } from "react-icons/ai";
 import ProductDescription from "./ProductDescription";
-import ProductPricing from "./ProjectPricing";
+import ProductPricing from "./ProductPricing";
 
 const CartPageBody: React.FC = () => {
     return (
