@@ -6,9 +6,10 @@ import ProductImages from "../components/ProductImages"
 import ProductPurchase from "./ProductPurchase";
 
 
+
 const ProductMainInfo: React.FC = () => {
     const product = {
-        image: '/path/to/product-image.jpg',
+        image: '.jpg',
         title: 'Apple iPhone 12 Pro Max 128GB',
         price: 299.99,
         specs: ['Spec 1', 'Spec 2', 'Spec 3'],
