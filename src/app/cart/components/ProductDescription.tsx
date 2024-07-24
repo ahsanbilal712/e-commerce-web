@@ -16,7 +16,7 @@ const items = [
 const CartPageBody: React.FC = () => {
     const [cartItems, setCartItems] = useState(items.map(item => ({ ...item, quantity: 1 })));
 
-    const handleQuantityChange = (index, delta) => {
+    const handleQuantityChange = (index: number, delta: number) => {
         const newItems = [...cartItems];
         const newQuantity = newItems[index].quantity + delta;
         if (newQuantity > 0) {
@@ -25,7 +25,7 @@ const CartPageBody: React.FC = () => {
         setCartItems(newItems);
     };
 
-    const handleRemoveItem = (index) => {
+    const handleRemoveItem = (index: number) => {
         const newItems = [...cartItems];
         newItems.splice(index, 1);
         setCartItems(newItems);

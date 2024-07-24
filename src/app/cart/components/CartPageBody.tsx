@@ -21,7 +21,7 @@ const CartPageBody: React.FC = () => {
                         <ProductDescription />
                     </div>
                     <div className="w-[400px] bg-slate-500">
-                        ff
+
                     </div>
                 </div>
             </div>
