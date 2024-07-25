@@ -4,12 +4,12 @@
 import React, { useState } from "react";
 import ProductImages from "../components/ProductImages"
 import ProductPurchase from "./ProductPurchase";
-
+import productImage from "../../../../public/images/home/products/products.webp";
 
 
 const ProductMainInfo: React.FC = () => {
     const product = {
-        image: '.jpg',
+        image: '/images/home/products/products.webp',
         title: 'Apple iPhone 12 Pro Max 128GB',
         price: 299.99,
         specs: ['Spec 1', 'Spec 2', 'Spec 3'],

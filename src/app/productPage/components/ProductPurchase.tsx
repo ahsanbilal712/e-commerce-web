@@ -28,6 +28,7 @@ const ProductPurchase: React.FC<ProductProps> = ({ image, title, price, specs })
     return (
         <div className="flex flex-col w-full p-4">
             <h1 className="text-2xl font-bold">{title}</h1>
+
             <div className="flex items-center my-2">
                 <div className="flex text-yellow-400"> {/* Placeholder for star icons */}
                     ★★★★☆
