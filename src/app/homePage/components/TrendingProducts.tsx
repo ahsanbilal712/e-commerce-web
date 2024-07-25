@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import productImg from "../../../../public/images/home/products/products.webp";
 import productImg2 from "../../../../public/images/home/products/productImg2.webp";
 import productImg3 from "../../../../public/images/home/products/productImg3.webp";
+import Link from 'next/link';
+
 
 const PopularCategories: React.FC = () => {
     const items = [
@@ -73,11 +75,14 @@ const PopularCategories: React.FC = () => {
             <div className="carousel flex space-x-5 rounded-box overflow-hidden">
                 {items.slice(startIndex, startIndex + 7).map((item, index) => (
                     <div key={index} className="carousel-item flex-shrink-0 w-[175px] p-3 rounded-xl  bg-white">
-                        <img
-                            src={item.image.src}
-                            alt={`Item ${index}`}
-                            className="w-[210px] h-36 object-cover rounded-xl"
-                        />
+                        <Link href="/productPage" passHref>
+                            <img
+                                src={item.image.src}
+                                alt={`Item ${index}`}
+                                className="w-[210px] h-36 object-cover rounded-xl"
+
+                            />
+                        </Link>
                         <div className=" mt-2">
                             <div className="text-xs text-blue-800 font-bold">{item.title}</div>
                             <div className="text-xs font-bold">{item.price}</div>
