@@ -8,7 +8,7 @@ import ProductPurchase from "./ProductPurchase";
 interface ProductProps {
     product: {
         image: string;
-        title: string;
+        name: string;
         price: number;
         specs: string[];
     };

@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartItem {
   image: string;
-  title: string;
+  name: string;
   price: number;
   quantity: number;
 }
@@ -21,7 +21,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      const existingItemIndex = state.items.findIndex(item => item.title === action.payload.title);
+      const existingItemIndex = state.items.findIndex(item => item.name === action.payload.name);
       if (existingItemIndex >= 0) {
         state.items[existingItemIndex].quantity += action.payload.quantity;
       } else {

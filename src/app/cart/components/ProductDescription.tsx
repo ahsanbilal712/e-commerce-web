@@ -25,9 +25,9 @@ const ProductDescription: React.FC = () => {
             {cartItems.map((item, index) => (
                 <div key={index} className="grid grid-cols-3 items-center gap-4">
                     <div className="flex">
-                        <img src={item.image} alt={item.title} className="h-24 w-24 mr-4 object-cover" />
+                        <img src={item.image} alt={item.name} className="h-24 w-24 mr-4 object-cover" />
                         <div className="w-32 content-center">
-                            <p className="text-xs text-blue-700">{item.title}</p>
+                            <p className="text-xs text-blue-700">{item.name}</p>
                             <p className="text-xs font-bold mt-2">${item.price}</p>
                         </div>
                     </div>

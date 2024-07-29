@@ -1,44 +1,38 @@
-// src/app/api/products/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import sql from '@/lib/db';
+import db from '@/lib/db';
+import { products } from '@/db/schema';
 
-export async function GET(): Promise<Response> {
+export async function GET(): Promise<NextResponse> {
     try {
         // Query the products table
-        const products = await sql`SELECT * FROM products`;
+        const productsList = await db.select().from(products);
 
         // Return the result as JSON
-        return new Response(JSON.stringify(products), {
-            headers: { 'Content-Type': 'application/json' },
-        });
+        return NextResponse.json(productsList);
     } catch (error) {
         console.error('Database error:', error);
-        return new Response('Error fetching data', { status: 500 });
+        return new NextResponse('Error fetching data');
     }
 }
+
 export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
         // Parse the JSON body from the request
         const body = await request.json();
 
-        // Destructure the properties from the request body
-        const {
-            name,
-            description,
-            price,
-            stock_quantity,
-            category_id,
-        } = body;
+        const { name, description, price, stock_quantity, category_id } = body;
 
-        // Set current date and time
         const now = new Date().toISOString();
 
-        // Insert the new product into the database
-        const result = await sql`
-            INSERT INTO products (name, description, price, stock_quantity, category_id, created_at, updated_at)
-            VALUES (${name}, ${description}, ${price}, ${stock_quantity}, ${category_id}, ${now}, ${now})
-            RETURNING id
-        `;
+        const result = await db.insert(products).values({
+            name: name,
+            description: description,
+            price: price,
+            stock_quantity: stock_quantity,
+            category_id: category_id,
+            created_at: now,
+            updated_at: now
+        }).returning();  // Ensure 'id' is a valid field to return
 
         // Return a success response with the new product ID
         return NextResponse.json({ id: result[0].id }, { status: 201 });

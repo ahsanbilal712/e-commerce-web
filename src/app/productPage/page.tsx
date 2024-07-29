@@ -13,13 +13,13 @@ export default function ProductPage() {
 
     // Extract query parameters
     const image = searchParams.get('image') || '';
-    const title = searchParams.get('title') || '';
+    const name = searchParams.get('name') || '';
     const price = parseFloat(searchParams.get('price') || '0');
     const specs = JSON.parse(searchParams.get('specs') || '[]') as string[];
 
     const product = {
         image,
-        title,
+        name,
         price,
         specs
     };

@@ -6,7 +6,7 @@ type PersistedState = {
     cart: {
         items: {
             image: string;
-            title: string;
+            name: string;
             price: number;
             quantity: number;
         }[];

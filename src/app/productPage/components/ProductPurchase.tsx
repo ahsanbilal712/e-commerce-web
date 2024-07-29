@@ -7,12 +7,12 @@ import { addToCart } from '../../cart/store/cartSlice'; // Import the action
 
 interface ProductProps {
     image: string;
-    title: string;
+    name: string;
     price: number;
     specs: string[];
 }
 
-const ProductPurchase: React.FC<ProductProps> = ({ image, title, price, specs }) => {
+const ProductPurchase: React.FC<ProductProps> = ({ image, name, price, specs }) => {
     const [quantity, setQuantity] = useState<number>(1);
     const dispatch = useDispatch();
 
@@ -20,14 +20,14 @@ const ProductPurchase: React.FC<ProductProps> = ({ image, title, price, specs })
     const decrementQuantity = () => quantity > 1 && setQuantity(prev => prev - 1);
 
     const handleAddToCart = () => {
-        console.log("Dispatching addToCart", { image, title, price, quantity });
+        console.log("Dispatching addToCart", { image, name, price, quantity });
 
-        dispatch(addToCart({ image, title, price, quantity }));
+        dispatch(addToCart({ image, name, price, quantity }));
     };
 
     return (
         <div className="flex flex-col w-full p-4">
-            <h1 className="text-2xl font-bold">{title}</h1>
+            <h1 className="text-2xl font-bold">{name}</h1>
 
             <div className="flex items-center my-2">
                 <div className="flex text-yellow-400"> {/* Placeholder for star icons */}

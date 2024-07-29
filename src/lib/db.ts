@@ -1,13 +1,9 @@
 // src/lib/db.ts
-import postgres from 'postgres';
+import { neon } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-http';
 
-const sql = postgres({
-  host: process.env.PGHOST,
-  port: parseInt(process.env.PGPORT || '5432', 10),
-  database: process.env.PGDATABASE,
-  username: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-  ssl: { rejectUnauthorized: false }, // Ensures SSL is used, and avoids self-signed certificate issues
-});
+// Initialize the connection using environment variables
+const sql = neon(process.env.DRIZZLE_DATABASE_URL!);
+const db = drizzle(sql);
 
-export default sql;
+export default db;

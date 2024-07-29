@@ -1,12 +1,14 @@
 
-//to check the neon database data on the frontend 
+// src/app/page.tsx or wherever your HomePage component is located
 "use client";
 import { useEffect, useState } from 'react';
 
 interface Product {
     id: number;
     name: string;
-    value: number;
+    price: number;
+    description: string;
+    stock_quantity: number;
 }
 
 const HomePage = () => {
@@ -43,7 +45,9 @@ const HomePage = () => {
                 {products.map((product) => (
                     <li key={product.id}>
                         <h2>{product.name}</h2>
-                        <p>Value: ${product.value.toFixed(2)}</p>
+                        <h2>{product.description}</h2>
+                        <h2>{product.stock_quantity}</h2>
+                        <p>Value: ${product.price}</p>
                     </li>
                 ))}
             </ul>
