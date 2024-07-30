@@ -1,3 +1,4 @@
+// src/app/api/auth/login/route.ts
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -33,7 +34,8 @@ export async function POST(request: Request) {
 
         const token = jwt.sign({ userId: user[0].id }, SECRET_KEY, { expiresIn: '1h' });
 
-        return NextResponse.json({ message: 'Login successful', token }, { status: 200 });
+        // Send the username along with the token
+        return NextResponse.json({ message: 'Login successful', token, username: user[0].username }, { status: 200 });
     } catch (error) {
         console.error('Error logging in user:', error);
         return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
