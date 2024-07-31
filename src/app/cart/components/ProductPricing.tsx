@@ -1,11 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { FC, useCallback, useEffect } from 'react';
-
-
 
 const ProductPricing: React.FC = () => {
     const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -14,10 +11,35 @@ const ProductPricing: React.FC = () => {
     const [zip, setZip] = useState('');
     const [coupon, setCoupon] = useState('');
     const [termsChecked, setTermsChecked] = useState(false);
+    const [username, setUsername] = useState<string | null>(null);
 
-
+    useEffect(() => {
+        // Retrieve the user information from local storage
+        const user = localStorage.getItem("user");
+        if (user) {
+            const parsedUser = JSON.parse(user);
+            setUsername(parsedUser.username);
+        }
+    }, []);
 
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+    const handleCheckout = () => {
+        if (username) {
+            // Create the JSON object
+            const cartDetails = {
+                username,
+                items: cartItems.map(item => ({
+                    itemName: item.name,
+                    price: item.price
+                })),
+                totalPrice: totalPrice.toFixed(2)
+            };
+
+            // Log the JSON object to the console
+            console.log(JSON.stringify(cartDetails, null, 2));
+        }
+    };
 
     return (
         <div className="p-4 bg-white border rounded-sm border-[#21b6d3] shadow-sm">
@@ -110,6 +132,7 @@ const ProductPricing: React.FC = () => {
 
             <button
                 disabled={!termsChecked}
+                onClick={handleCheckout}
                 className={`bg-black text-white text-xs px-4 py-4 rounded-sm hover:bg-blue-600 w-full ${!termsChecked ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
                 Checkout

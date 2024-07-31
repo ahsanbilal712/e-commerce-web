@@ -1,3 +1,4 @@
+//src/app/api/products/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { products } from '@/db/schema';
