@@ -31,6 +31,7 @@ const ProductPricing: React.FC = () => {
                 username,
                 items: cartItems.map(item => ({
                     itemName: item.name,
+                    quantity: item.quantity,
                     price: item.price
                 })),
                 totalPrice: totalPrice.toFixed(2)
