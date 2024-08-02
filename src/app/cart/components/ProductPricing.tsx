@@ -24,21 +24,49 @@ const ProductPricing: React.FC = () => {
 
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-    const handleCheckout = () => {
-        if (username) {
+    const handleCheckout = async () => {
+        if (username && termsChecked) {
             // Create the JSON object
-            const cartDetails = {
+            const orderDetails = {
                 username,
+                country,
+                state,
+                zip,
+                coupon,
+                termsChecked,  // Ensure this matches the expected field name in the backend
+                totalPrice: totalPrice.toFixed(2),  // Ensure this matches the expected field name in the backend
                 items: cartItems.map(item => ({
-                    itemName: item.name,
+                    itemName: item.name,  // Ensure these field names match the backend expectations
                     quantity: item.quantity,
                     price: item.price
-                })),
-                totalPrice: totalPrice.toFixed(2)
+                }))
             };
 
-            // Log the JSON object to the console
-            console.log(JSON.stringify(cartDetails, null, 2));
+            try {
+                // Send a POST request to the API
+                const response = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderDetails)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+                console.log('Order placed successfully:', result);
+
+                // Handle success, e.g., redirect to a confirmation page or show a success message
+            } catch (error) {
+                console.error('Error placing order:', error);
+                // Handle error, e.g., show an error message to the user
+            }
+        } else {
+            // Handle the case when username is not set or terms are not checked
+            console.warn('Please complete all required fields.');
         }
     };
 
@@ -79,7 +107,7 @@ const ProductPricing: React.FC = () => {
                         onChange={(e) => setState(e.target.value)}
                         className="w-full border-gray-300 rounded-md shadow-sm text-xs"
                     >
-                        <option value="" >Select State</option>
+                        <option value="">Select State</option>
                         <option value="ny">New York</option>
                         <option value="ca">California</option>
                         {/* Add more state options here */}
@@ -110,33 +138,31 @@ const ProductPricing: React.FC = () => {
                     onChange={(e) => setCoupon(e.target.value)}
                     className="w-full border-gray-300 rounded-md shadow-sm text-xs"
                 />
+                <button className="bg-black text-white text-xs px-4 py-2 mt-2 rounded-sm hover:bg-blue-600 w-full">
+                    Apply Coupon
+                </button>
                 <hr className="my-4" />
             </div>
 
-            {/* Order Total */}
-            <div className="flex justify-between text-md font-semibold mb-4">
-                <p>Order Total:</p>
-                <p className='text-lime-700 text-xl'>${totalPrice.toFixed(2)}</p>
-            </div>
-            <p className="text-sm text-gray-600 mb-4">Taxes and shipping calculated at checkout.</p>
-
             {/* Terms & Conditions */}
-            <div className="flex items-center mb-4">
+            <div className="mb-4 flex items-center">
                 <input
                     type="checkbox"
                     checked={termsChecked}
                     onChange={() => setTermsChecked(!termsChecked)}
                     className="mr-2"
                 />
-                <label className="text-sm">I agree with Terms & Conditions</label>
+                <label className="text-xs">
+                    I have read and agree to the <a href="#" className="text-blue-600">terms and conditions</a>.
+                </label>
             </div>
 
+            {/* Checkout Button */}
             <button
-                disabled={!termsChecked}
                 onClick={handleCheckout}
-                className={`bg-black text-white text-xs px-4 py-4 rounded-sm hover:bg-blue-600 w-full ${!termsChecked ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className="bg-black text-white text-xs px-4 py-2 rounded-sm hover:bg-blue-600 w-full"
             >
-                Checkout
+                Proceed to Checkout
             </button>
         </div>
     );

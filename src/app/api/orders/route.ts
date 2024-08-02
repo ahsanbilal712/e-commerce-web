@@ -21,7 +21,6 @@ interface OrderRequestBody {
     items: OrderItem[];
 }
 
-
 export async function GET(request: NextRequest): Promise<NextResponse> {
     try {
         // Query the orders table
@@ -33,7 +32,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
                 const items = await db
                     .select()
                     .from(order_items)
-
 
                 return {
                     ...order,
@@ -50,12 +48,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
 }
 
-
 // Handle POST requests
 export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
         // Parse the JSON body from the request
         const body: OrderRequestBody = await request.json();
+
+        // Log the request body for debugging
+        console.log('Request Body:', body);
 
         const { username, country, state, zip, coupon, termsChecked, totalPrice, items } = body;
 
